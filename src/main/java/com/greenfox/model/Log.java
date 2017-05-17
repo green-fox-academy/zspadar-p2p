@@ -34,5 +34,5 @@ public class Log {
   public String getRequestData() {
     return requestData;
   }
-  
+
 }
