@@ -15,7 +15,7 @@ public class P2PController {
     return "index";
   }
 
-  @PostMapping(value = "/enter")
+  @GetMapping(value = "/enter")
   public String enterUserName() {
     return "enter";
   }
