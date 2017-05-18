@@ -38,7 +38,7 @@ public class P2PController{
     return "enter";
   }
 
-  @PostMapping(value = "/enter/add")
+  @PostMapping(value = "/enter")
   public String addNewUser (@RequestParam("name") String name, Model model) {
     if (name.isEmpty()) {
       return "redirect:/enter";
