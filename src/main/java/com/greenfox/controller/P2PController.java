@@ -48,7 +48,7 @@ public class P2PController {
 
   @PostMapping(value = "/enter/add")
   public String addNewUser(@RequestParam("name") String name) {
-    if (name.isEmpty()) {
+    if (name.equals("")) {
       error = "The username field is empty";
       return "redirect:/enter";
     } else {
@@ -60,7 +60,7 @@ public class P2PController {
 
   @GetMapping(value = "/update")
   public String upDate(@RequestParam("userName") String userName) {
-    if (userName.isEmpty()) {
+    if (userName.equals("")) {
       error = "The username field is empty";
       return "redirect:/";
     } else {
