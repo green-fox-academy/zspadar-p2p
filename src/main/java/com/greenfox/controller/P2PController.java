@@ -33,17 +33,26 @@ public class P2PController{
   }
 
   @GetMapping(value = "/enter")
-  public String enterUserName() {
-
+  public String enterUserName(HttpServletRequest request) {
+    if(System.getenv("CHAT_APP_LOGLEVEL"). equals("ERROR")) {
+      System.err.println("Errrorrrr");
+    } else {
+      Log log = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""));
+      System.out.println(log);
+    }
     return "enter";
   }
 
   @PostMapping(value = "/enter")
   public String addNewUser (@RequestParam("name") String name, Model model) {
     if (name.isEmpty()) {
+      error = "The username field is empty";
+      model.addAttribute("error", error);
       return "redirect:/enter";
     } else {
       userRepository.save(new User(name));
+      error = "";
+      model.addAttribute("error", error);
       return "redirect:/";
     }
 
