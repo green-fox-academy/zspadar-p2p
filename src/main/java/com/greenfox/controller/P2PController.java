@@ -47,9 +47,10 @@ public class P2PController {
   }
 
   @PostMapping(value = "/enter/add")
-  public String addNewUser(@RequestParam("name") String name) {
+  public String addNewUser(@RequestParam("name") String name, Model model) {
     if (name.equals("")) {
       error = "The username field is empty";
+      model.addAttribute("error", error);
       return "redirect:/enter";
     } else {
       userRepository.save(new User(name));
