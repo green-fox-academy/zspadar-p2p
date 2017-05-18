@@ -12,6 +12,11 @@ public class P2PController {
 
   @GetMapping(value = "/")
   public String showIndex() {
+    if(System.getenv("CHAT_APP_LOGLEVEL"). equals("ERROR")) {
+      System.err.println("Errrorrrr");
+    } else {
+      System.out.println("INFO");
+    }
     return "index";
   }
 
