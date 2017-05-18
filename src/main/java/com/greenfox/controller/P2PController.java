@@ -1,6 +1,7 @@
 package com.greenfox.controller;
 
 import com.greenfox.model.Log;
+import com.greenfox.model.User;
 import com.greenfox.repository.UserRepository;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 /**
  * Created by zsuzsanna.padar on 2017. 05. 17..
@@ -32,14 +34,20 @@ public class P2PController{
 
   @GetMapping(value = "/enter")
   public String enterUserName() {
+
     return "enter";
   }
 
-//  @PostMapping(value = "/enter/add")
-//  public String addNewUser (@RequestParam("name") String name, Model model) {
-//
-//    model.addAttribute("name", name);
-//  }
+  @PostMapping(value = "/enter/add")
+  public String addNewUser (@RequestParam("name") String name, Model model) {
+    if (name.isEmpty()) {
+      return "redirect:/enter";
+    } else {
+      userRepository.save(new User(name));
+      return "redirect:/";
+    }
+
+  }
 
 
 }

@@ -2,7 +2,7 @@ package com.greenfox.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import javax.servlet.http.HttpServletRequest;
+
 
 /**
  * Created by zsuzsanna.padar on 2017. 05. 17..
