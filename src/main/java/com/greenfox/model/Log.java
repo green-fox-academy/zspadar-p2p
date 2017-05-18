@@ -20,7 +20,7 @@ public class Log {
   public Log(String path, String method, String requestData) {
     this.path = path;
     this.method = method;
-    this.dateAndTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYY-MM-DD HH:MM:SS.SSS"));
+    this.dateAndTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
     this.logLevel = System.getenv("CHAT_APP_LOGLEVEL");
     this.requestData = requestData;
   }
