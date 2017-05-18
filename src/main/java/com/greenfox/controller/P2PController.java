@@ -24,7 +24,7 @@ public class P2PController{
     if(System.getenv("CHAT_APP_LOGLEVEL"). equals("ERROR")) {
       System.err.println("Errrorrrr");
     } else {
-      Log log = new Log(request.getMethod(), request.getPathInfo(), request.getParameter(""));
+      Log log = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""));
       System.out.println(log);
     }
     return "index";
