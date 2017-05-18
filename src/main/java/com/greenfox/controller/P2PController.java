@@ -55,6 +55,7 @@ public class P2PController {
     } else {
       userRepository.save(new User(name));
       error = "";
+      model.addAttribute("error", error);
       return "redirect:/";
     }
   }
