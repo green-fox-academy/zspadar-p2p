@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -16,14 +17,15 @@ import org.springframework.web.bind.annotation.RequestParam;
  * Created by zsuzsanna.padar on 2017. 05. 17..
  */
 @Controller
-public class P2PController{
+public class P2PController {
+
   @Autowired
   UserRepository userRepository;
   String error;
 
   @GetMapping(value = "/")
   public String showIndex(HttpServletRequest request) {
-    if(System.getenv("CHAT_APP_LOGLEVEL"). equals("ERROR")) {
+    if (System.getenv("CHAT_APP_LOGLEVEL").equals("ERROR")) {
       System.err.println("Errrorrrr");
     } else {
       Log log = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""));
@@ -34,7 +36,7 @@ public class P2PController{
 
   @GetMapping(value = "/enter")
   public String enterUserName(HttpServletRequest request, Model model) {
-    if(System.getenv("CHAT_APP_LOGLEVEL"). equals("ERROR")) {
+    if (System.getenv("CHAT_APP_LOGLEVEL").equals("ERROR")) {
       System.err.println("Errrorrrr");
     } else {
       Log log = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""));
@@ -45,7 +47,7 @@ public class P2PController{
   }
 
   @PostMapping(value = "/enter/add")
-  public String addNewUser (@RequestParam("name") String name) {
+  public String addNewUser(@RequestParam("name") String name) {
     if (name.isEmpty()) {
       error = "The username field is empty";
       return "redirect:/enter";
@@ -54,8 +56,28 @@ public class P2PController{
       error = "";
       return "redirect:/";
     }
+  }
+
+  @GetMapping(value = "/update")
+  public String upDate(@RequestParam("userName") String userName) {
+    if (userName.isEmpty()) {
+      error = "The username field is empty";
+      return "redirect:/";
+    } else {
+      User user = userRepository.findOne((long)1);
+      upDatedUser(user, userName);
+      return "redirect:/";
+    }
 
   }
+
+  @PutMapping(value = "/update/userupdated")
+  public void upDatedUser(User user, String userName) {
+    user.setUserName(userName);
+    userRepository.save(user);
+  }
+
+
 
 
 }
