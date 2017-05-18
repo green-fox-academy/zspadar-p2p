@@ -2,6 +2,7 @@ package com.greenfox.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by zsuzsanna.padar on 2017. 05. 17..
@@ -16,12 +17,11 @@ public class Log {
   public Log() {
   }
 
-  public Log(String path, String method, String dateAndTime, String logLevel,
-      String requestData) {
+  public Log(String path, String method, String requestData) {
     this.path = path;
     this.method = method;
     this.dateAndTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("YYYY-MM-DD HH:MM:SS.SSS"));
-    this.logLevel = logLevel;
+    this.logLevel = System.getenv("CHAT_APP_LOGLEVEL");
     this.requestData = requestData;
   }
 
