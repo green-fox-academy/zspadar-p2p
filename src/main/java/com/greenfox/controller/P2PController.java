@@ -43,7 +43,7 @@ public class P2PController {
     messageList = (List<Message>) messageRepository.findAll();
     model.addAttribute("message", messageList);
     model.addAttribute("currentUser", userRepository.findOne((long) 1).getUserName());
-    System.out.println(messageList);
+    System.out.println(messageList.get(1));
 
     return "index";
   }
