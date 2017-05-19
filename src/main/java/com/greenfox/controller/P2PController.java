@@ -1,6 +1,5 @@
 package com.greenfox.controller;
 
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 import com.greenfox.model.Log;
 import com.greenfox.model.Message;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -62,7 +60,13 @@ public class P2PController {
   }
 
   @PostMapping(value = "/enter/add")
-  public String addNewUser(@RequestParam("name") String name, Model model) {
+  public String addNewUser(HttpServletRequest request, @RequestParam("name") String name, Model model) {
+    if (System.getenv("CHAT_APP_LOGLEVEL").equals("ERROR")) {
+      System.err.println("Errrorrrr");
+    } else {
+      Log log = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""));
+      System.out.println(log);
+    }
     if (name.equals("")) {
       error = "The username field is empty";
       model.addAttribute("error", error);
@@ -77,26 +81,44 @@ public class P2PController {
   }
 
   @GetMapping(value = "/update")
-  public String upDate(@RequestParam("userName") String userName) {
+  public String upDate(HttpServletRequest request, @RequestParam("userName") String userName) {
+    if (System.getenv("CHAT_APP_LOGLEVEL").equals("ERROR")) {
+      System.err.println("Errrorrrr");
+    } else {
+      Log log = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""));
+      System.out.println(log);
+    }
     if (userName.equals("")) {
       error = "The username field is empty";
       return "redirect:/";
     } else {
       User user = userRepository.findOne((long)1);
-      upDatedUser(user, userName);
+      upDatedUser(request, user, userName);
       return "redirect:/";
     }
 
   }
 
   @PostMapping(value = "/update/userupdated")
-  public void upDatedUser(User user, String userName) {
+  public void upDatedUser(HttpServletRequest request, User user, String userName) {
+    if (System.getenv("CHAT_APP_LOGLEVEL").equals("ERROR")) {
+      System.err.println("Errrorrrr");
+    } else {
+      Log log = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""));
+      System.out.println(log);
+    }
     user.setUserName(userName);
     userRepository.save(user);
   }
 
   @PostMapping(value = "/send")
-  public String sendMessage(@RequestParam("message") String userName) {
+  public String sendMessage(HttpServletRequest request, @RequestParam("message") String userName) {
+    if (System.getenv("CHAT_APP_LOGLEVEL").equals("ERROR")) {
+      System.err.println("Errrorrrr");
+    } else {
+      Log log = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""));
+      System.out.println(log);
+    }
     messageRepository.save(new Message(currentUser, "message"));
     return "redirect:/";
   }

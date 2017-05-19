@@ -13,7 +13,7 @@
     <button th:type="submit">Update</button>
   </form>
   <ul>
-    <li th:each="message : ${messageList}" th:text="${userName} + ${message}"/>
+    <li th:each="message : ${messageList}" th:text="${message.getUserName} + ${message.getMessage}"/>
   </ul>
 <form th:class="send" th:action="@{/send}" th:method="post">
   <input th:class="sandbox" th:type="text" th:name="message"/>
