@@ -1,8 +1,14 @@
 package com.greenfox.controller;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 import com.greenfox.model.Log;
+import com.greenfox.model.Message;
 import com.greenfox.model.User;
+import com.greenfox.repository.MessageRepository;
 import com.greenfox.repository.UserRepository;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,8 +26,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class P2PController {
 
   @Autowired
-  UserRepository userRepository;
-  String error;
+  private UserRepository userRepository;
+  @Autowired
+  private MessageRepository messageRepository;
+
+  private String error;
 
   @GetMapping(value = "/")
   public String showIndex(HttpServletRequest request) {
@@ -73,10 +82,18 @@ public class P2PController {
 
   }
 
-  @PutMapping(value = "/update/userupdated")
+  @PostMapping(value = "/update/userupdated")
   public void upDatedUser(User user, String userName) {
     user.setUserName(userName);
     userRepository.save(user);
+  }
+
+  @PostMapping(value = "/send")
+  public String sendMessage(@RequestParam("message") String userName) {
+    List<Message> messageList = new ArrayList<>();
+    messageList = (List<Message>) messageRepository.findAll();
+    messageRepository.save(new Message(userRepository.findOne((long)1).getUserName(), "message"));
+    return "redirect:/";
   }
 
 

@@ -1,6 +1,8 @@
 package com.greenfox.model;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +25,7 @@ public class Message {
   String userName;
   Timestamp timestamp;
 
+
   public Message() {
   }
 
@@ -31,6 +34,7 @@ public class Message {
     this.message = message;
     this.userName = userName;
     this.timestamp = new Timestamp(System.currentTimeMillis());
+
   }
 
   public long getId() {

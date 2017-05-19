@@ -12,5 +12,12 @@
     <input th:type="text" th:name="userName" th:placeholder="${userName}"/>
     <button th:type="submit">Update</button>
   </form>
+  <ul>
+    <li th:each="message : ${messageList}" th:text="${userName} + ${message}"/>
+  </ul>
+<form th:class="send" th:action="@{/send}" th:method="post">
+  <input th:class="sendbox" th:type="text" th:name="message"/>
+  <button th:type="submit">Send</button>
+</form>
 </body>
 </html>
