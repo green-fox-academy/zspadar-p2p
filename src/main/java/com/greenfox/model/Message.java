@@ -27,10 +27,12 @@ public class Message {
 
 
   public Message() {
+    this.id = (1000000 + (long)(Math.random() * 9999999));
+    this.timestamp = new Timestamp(System.currentTimeMillis());
   }
 
   public Message(String userName, String message) {
-    this.id = 1000000 + ((long)(Math.random() * 9999999));
+    this.id = (1000000 + (long)(Math.random() * 9999999));
     this.message = message;
     this.userName = userName;
     this.timestamp = new Timestamp(System.currentTimeMillis());
