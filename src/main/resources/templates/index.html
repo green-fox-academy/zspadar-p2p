@@ -14,8 +14,8 @@
   </form>
   <ul>
     <li th:each="message : ${messageList}" ></li>
-    <li th:text="${message.userName}" ></li>
-    <li class="message" th:text="${message.message}"></li>
+    <li th:text="${message.getUserName()}" ></li>
+    <li class="message" th:text="${message.getMessage()}"></li>
   </ul>
 <form th:class="send" th:action="@{/send}" th:method="post">
   <textarea th:type="text" th:name="message" style="width: 200px; height: 50px;"></textarea>
