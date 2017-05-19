@@ -89,10 +89,12 @@ public class P2PController {
   }
 
   @PostMapping(value = "/send")
-  public String sendMessage(@RequestParam("message") String userName) {
+  public String sendMessage(@RequestParam("message") String userName, Model model) {
     List<Message> messageList = new ArrayList<>();
     messageList = (List<Message>) messageRepository.findAll();
     messageRepository.save(new Message(userRepository.findOne((long)1).getUserName(), "message"));
+    messageList.add(messageRepository.findOne((long)1));
+    model.addAttribute("message", messageList);
     return "redirect:/";
   }
 
