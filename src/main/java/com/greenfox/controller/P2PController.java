@@ -31,15 +31,19 @@ public class P2PController {
   private MessageRepository messageRepository;
 
   private String error;
+  private String currentUser;
 
   @GetMapping(value = "/")
-  public String showIndex(HttpServletRequest request) {
+  public String showIndex(HttpServletRequest request, Model model) {
     if (System.getenv("CHAT_APP_LOGLEVEL").equals("ERROR")) {
       System.err.println("Errrorrrr");
     } else {
       Log log = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""));
       System.out.println(log);
     }
+    List<Message> messageList = new ArrayList<>();
+    messageList = (List<Message>) messageRepository.findAll();
+    model.addAttribute("message", messageList);
     return "index";
   }
 
@@ -65,6 +69,7 @@ public class P2PController {
       userRepository.save(new User(name));
       error = "";
       model.addAttribute("error", error);
+      currentUser = name;
       return "redirect:/";
     }
   }
@@ -89,12 +94,8 @@ public class P2PController {
   }
 
   @PostMapping(value = "/send")
-  public String sendMessage(@RequestParam("message") String userName, Model model) {
-    List<Message> messageList = new ArrayList<>();
-    messageList = (List<Message>) messageRepository.findAll();
-    messageRepository.save(new Message(userRepository.findOne((long)1).getUserName(), "message"));
-    messageList.add(messageRepository.findOne((long)1));
-    model.addAttribute("message", messageList);
+  public String sendMessage(@RequestParam("message") String userName) {
+    messageRepository.save(new Message(currentUser, "message"));
     return "redirect:/";
   }
 
