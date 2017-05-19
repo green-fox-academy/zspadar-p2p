@@ -92,7 +92,7 @@ public class P2PController {
       error = "The username field is empty";
       return "redirect:/";
     } else {
-      User user = userRepository.findOne((long)1);
+      User user = userRepository.findOne(new Long(1));
       upDatedUser(request, user, userName);
       return "redirect:/";
     }
