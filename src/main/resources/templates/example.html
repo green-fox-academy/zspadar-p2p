@@ -1,15 +1,13 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Peer to peer chat program</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta charset="utf-8" />
+  <title>Notes</title>
 </head>
-<body>hello
+<body>
+<h2>Update the note</h2>
+<li  th:text="${message}">Learned to swim!</li>
 
-<!--<ul th:each="messageTemp : ${message}" >-->
-  <!--<li th:text="${messageTemp.getUserName()}" ></li>-->
-  <!--&lt;!&ndash;<li class="message" th:text="${messageTemp.getMessage()}"></li>&ndash;&gt;-->
-<!--</ul>-->
 
 </body>
 </html>
