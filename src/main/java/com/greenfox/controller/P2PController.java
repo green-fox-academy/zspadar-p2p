@@ -42,12 +42,7 @@ public class P2PController {
     if(userRepository.count() == 0) {
       return "redirect:/enter";
     }
-    List<Message> messageList;
-    messageList = (List<Message>) messageRepository.findAll();
-    model.addAttribute("message", messageList);
-    model.addAttribute("currentUser", userRepository.findOne((long) 1).getUserName());
-
-
+    
     return "index";
   }
 
@@ -116,7 +111,7 @@ public class P2PController {
   }
 
   @PostMapping(value = "/send")
-  public String sendMessage(HttpServletRequest request, @RequestParam("message") String message) {
+  public String sendMessage(HttpServletRequest request, @RequestParam("message") String message, Model model) {
     if (System.getenv("CHAT_APP_LOGLEVEL").equals("ERROR")) {
       System.err.println("Errrorrrr");
     } else {
@@ -124,7 +119,12 @@ public class P2PController {
       System.out.println(log);
     }
     messageRepository.save(new Message(currentUser, message));
+    List<Message> messageList;
+    messageList = (List<Message>) messageRepository.findAll();
+    model.addAttribute("message", messageList);
+    model.addAttribute("currentUser", userRepository.findOne((long) 1).getUserName());
     return "redirect:/";
+
   }
 
 
