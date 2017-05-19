@@ -18,7 +18,6 @@ import javax.persistence.Table;
 public class Message {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
   long id;
 
   String message;

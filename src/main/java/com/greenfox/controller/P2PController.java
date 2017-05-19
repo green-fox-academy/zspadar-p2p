@@ -92,7 +92,7 @@ public class P2PController {
       error = "The username field is empty";
       return "redirect:/";
     } else {
-      User user = userRepository.findOne(new Long(1));
+      User user = userRepository.findOne((long) 1);
       upDatedUser(request, user, userName);
       return "redirect:/";
     }
@@ -112,14 +112,14 @@ public class P2PController {
   }
 
   @PostMapping(value = "/send")
-  public String sendMessage(HttpServletRequest request, @RequestParam("message") String userName) {
+  public String sendMessage(HttpServletRequest request, @RequestParam("message") String message) {
     if (System.getenv("CHAT_APP_LOGLEVEL").equals("ERROR")) {
       System.err.println("Errrorrrr");
     } else {
       Log log = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""));
       System.out.println(log);
     }
-    messageRepository.save(new Message(currentUser, "message"));
+    messageRepository.save(new Message(currentUser, message));
     return "redirect:/";
   }
 
