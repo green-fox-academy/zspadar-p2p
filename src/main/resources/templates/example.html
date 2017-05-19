@@ -6,9 +6,9 @@
 </head>
 <body>
 
-<ul th:each="message : ${messageList}" >
-  <li th:text="${message.getUserName()}" ></li>
-  <li class="message" th:text="${message.getMessage()}"></li>
+<ul th:each="messageTemp : ${message}" >
+  <li th:text="${messageTemp.getUserName()}" ></li>
+  <li class="message" th:text="${messageTemp.getMessage()}"></li>
 </ul>
 
 </body>
