@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Peer to peer chat program</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<ul th:each="message : ${messageList}" >
+  <li th:text="${message.getUserName()}" ></li>
+  <li class="message" th:text="${message.getMessage()}"></li>
+</ul>
+
+</form>
+</body>
+</html>

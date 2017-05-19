@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -42,7 +43,7 @@ public class P2PController {
     if(userRepository.count() == 0) {
       return "redirect:/enter";
     }
-    
+
     return "index";
   }
 
@@ -125,6 +126,17 @@ public class P2PController {
     model.addAttribute("currentUser", userRepository.findOne((long) 1).getUserName());
     return "redirect:/";
 
+  }
+
+  @RequestMapping(value = "/example")
+  public String example(Model model) {
+    messageRepository.save(new Message("hello", "Gyuri"));
+    List<Message> messageList;
+    messageList = (List<Message>) messageRepository.findAll();
+    model.addAttribute("message", messageList);
+    model.addAttribute("currentUser", userRepository.findOne((long) 1).getUserName());
+
+    return "example";
   }
 
 
