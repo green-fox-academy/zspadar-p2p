@@ -39,11 +39,14 @@ public class P2PController {
       Log log = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""));
       System.out.println(log);
     }
+    if(userRepository.count() == 0) {
+      return "redirect:/enter";
+    }
     List<Message> messageList;
     messageList = (List<Message>) messageRepository.findAll();
     model.addAttribute("message", messageList);
     model.addAttribute("currentUser", userRepository.findOne((long) 1).getUserName());
-    System.out.println(messageList.get(1));
+
 
     return "index";
   }
