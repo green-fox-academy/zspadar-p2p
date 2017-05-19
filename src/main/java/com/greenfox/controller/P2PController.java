@@ -42,7 +42,7 @@ public class P2PController {
     List<Message> messageList;
     messageList = (List<Message>) messageRepository.findAll();
     model.addAttribute("message", messageList);
-    model.addAttribute("currentUser", userRepository.findOne((long)1).getUserName());
+    model.addAttribute("currentUser", userRepository);
 
     return "index";
   }
@@ -108,6 +108,7 @@ public class P2PController {
       System.out.println(log);
     }
     user.setUserName(userName);
+    currentUser = userName;
     userRepository.save(user);
   }
 
