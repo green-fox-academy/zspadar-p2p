@@ -8,6 +8,9 @@ import java.time.format.DateTimeFormatter;
  * Created by zsuzsanna.padar on 2017. 05. 17..
  */
 public class Log {
+
+  public static final String LOG_LEVEL = System.getenv("CHAT_APP_LOGLEVEL"); // ERROR or INFO
+
   private String path;
   private String method;
   private String dateAndTime;
@@ -17,12 +20,20 @@ public class Log {
   public Log() {
   }
 
-  public Log(String path, String method, String requestData) {
+  public Log(String path, String method, String requestData, String logLevel) {
     this.path = path;
     this.method = method;
     this.dateAndTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
-    this.logLevel = System.getenv("CHAT_APP_LOGLEVEL");
+    this.logLevel = logLevel;
     this.requestData = requestData;
+  }
+
+  public void log() {
+    if (logLevel.equals("ERROR")) {
+      System.err.println(this);
+    } else if (!LOG_LEVEL.equals("ERROR")) {
+      System.out.println(this);
+    }
   }
 
   public String getPath() {

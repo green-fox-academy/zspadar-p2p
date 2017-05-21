@@ -30,117 +30,79 @@ public class P2PController {
   private MessageRepository messageRepository;
 
   private String error;
-  private String currentUser;
 
   @GetMapping(value = "/")
   public String showIndex(HttpServletRequest request, Model model) {
-    if (System.getenv("CHAT_APP_LOGLEVEL").equals("ERROR")) {
-      System.err.println("Errrorrrr");
-    } else {
-      Log log = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""));
-      System.out.println(log);
-    }
+    Log logger = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""), "INFO");
+    logger.log();
     if(userRepository.count() == 0) {
       return "redirect:/enter";
     }
-
+    User user = userRepository.findOne((long) 1);
+    model.addAttribute("currentUser", user.getUserName());
+    List<Message> messageList;
+    messageList = (List<Message>) messageRepository.findAll();
+    model.addAttribute("message", messageList);
     return "index";
   }
 
   @GetMapping(value = "/enter")
   public String enterUserName(HttpServletRequest request, Model model) {
-    if (System.getenv("CHAT_APP_LOGLEVEL").equals("ERROR")) {
-      System.err.println("Errrorrrr");
-    } else {
-      Log log = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""));
-      System.out.println(log);
-    }
+    Log logger = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""), "INFO");
+    logger.log();
     model.addAttribute("error", error);
     return "enter";
   }
 
   @PostMapping(value = "/enter/add")
   public String addNewUser(HttpServletRequest request, @RequestParam("name") String name, Model model) {
-    if (System.getenv("CHAT_APP_LOGLEVEL").equals("ERROR")) {
-      System.err.println("Errrorrrr");
-    } else {
-      Log log = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""));
-      System.out.println(log);
-    }
     if (name.equals("")) {
       error = "The username field is empty";
       model.addAttribute("error", error);
+      Log logger = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""), "ERROR");
+      logger.log();
       return "redirect:/enter";
     } else {
       userRepository.save(new User(name));
       error = "";
       model.addAttribute("error", error);
-      currentUser = name;
+      Log logger = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""), "INFO");
+      logger.log();
       return "redirect:/";
     }
   }
 
   @GetMapping(value = "/update")
   public String upDate(HttpServletRequest request, @RequestParam("userName") String userName) {
-    if (System.getenv("CHAT_APP_LOGLEVEL").equals("ERROR")) {
-      System.err.println("Errrorrrr");
-    } else {
-      Log log = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""));
-      System.out.println(log);
-    }
     if (userName.equals("")) {
       error = "The username field is empty";
+      Log logger = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""), "ERROR");
+      logger.log();
       return "redirect:/";
     } else {
       User user = userRepository.findOne((long) 1);
-      upDatedUser(request, user, userName);
+      upDatedUser(user, userName);
+      Log logger = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""), "INFO");
+      logger.log();
       return "redirect:/";
     }
 
   }
 
-  @PostMapping(value = "/update/userupdated")
-  public void upDatedUser(HttpServletRequest request, User user, String userName) {
-    if (System.getenv("CHAT_APP_LOGLEVEL").equals("ERROR")) {
-      System.err.println("Errrorrrr");
-    } else {
-      Log log = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""));
-      System.out.println(log);
-    }
+  private void upDatedUser(User user, String userName) {
     user.setUserName(userName);
     userRepository.save(user);
   }
 
   @PostMapping(value = "/send")
   public String sendMessage(HttpServletRequest request, @RequestParam("message") String message, Model model) {
-    if (System.getenv("CHAT_APP_LOGLEVEL").equals("ERROR")) {
-      System.err.println("Errrorrrr");
-    } else {
-      Log log = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""));
-      System.out.println(log);
-    }
-    messageRepository.save(new Message(currentUser, message));
-    List<Message> messageList;
-    messageList = (List<Message>) messageRepository.findAll();
-    model.addAttribute("message", messageList);
-    model.addAttribute("currentUser", userRepository.findOne((long) 1).getUserName());
+    Log logger = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""), "INFO");
+    logger.log();
+    User user = userRepository.findOne((long) 1);
+    messageRepository.save(new Message(user.getUserName(), message));
     return "redirect:/";
 
   }
-
-  @RequestMapping(value = "/example")
-  public String example(Model model) {
-    messageRepository.save(new Message("hello", "Gyuri"));
-    List<Message> messageList;
-    messageList = (List<Message>) messageRepository.findAll();
-    model.addAttribute("message", messageList);
-    model.addAttribute("currentUser", userRepository.findOne((long) 1).getUserName());
-
-    return "example";
-  }
-
-
-
 
 }
 
