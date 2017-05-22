@@ -1,13 +1,11 @@
 package com.greenfox.model;
 
+import com.greenfox.repository.MessageRepository;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 /**
@@ -20,30 +18,34 @@ public class Message {
   @Id
   long id;
 
-  String message;
+  String text;
   String userName;
   Timestamp timestamp;
 
 
-  public Message() {
-    this.id = (1000000 + (long)(Math.random() * 9999999));
-    this.timestamp = new Timestamp(System.currentTimeMillis());
+
+  public Message(long id, String userName, String text, Timestamp timestamp) {
+    this.id = id;
+    this.userName = userName;
+    this.text = text;
+    this.timestamp = timestamp;
   }
 
-  public Message(String userName, String message) {
+  public Message(String userName, String text) {
     this.id = (1000000 + (long)(Math.random() * 9999999));
-    this.message = message;
+    this.text = text;
     this.userName = userName;
     this.timestamp = new Timestamp(System.currentTimeMillis());
-
   }
+
+
 
   public long getId() {
     return id;
   }
 
-  public String getMessage() {
-    return message;
+  public String getText() {
+    return text;
   }
 
   public String getUserName() {

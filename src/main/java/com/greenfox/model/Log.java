@@ -78,7 +78,7 @@ public class Log {
 
   @Override
   public String toString() {
-    //2017-05-16 21:47:19.040 INFO Request /message POST text=apple
+    //2017-05-16 21:47:19.040 INFO Request /text POST text=apple
     return dateAndTime + " " + logLevel + " " + path + " " + method + " " + requestData;
   }
 }
