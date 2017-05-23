@@ -28,6 +28,7 @@ public class Receive {
     missingFields.add(isUserNameMissing());
     missingFields.add(isTextMissing());
     missingFields.add(isTimeStampMissing());
+    missingFields.add(isClientIdMissing());
     for(String temp: missingFields){
       missingField +=temp;
     }
@@ -47,7 +48,7 @@ public class Receive {
     return client;
   }
 
-  public String  isMessageIdMissing() {
+  private String  isMessageIdMissing() {
    try {
     if(String.valueOf(message.getId()).isEmpty()) {
       return "message.id";
@@ -58,7 +59,7 @@ public class Receive {
      return "";
   }
 
-  public String isUserNameMissing() {
+  private String isUserNameMissing() {
     try {
       if (message.getUsername().isEmpty()) {
         return "message.username";
@@ -69,7 +70,7 @@ public class Receive {
     return "";
   }
 
-  public String isTextMissing() {
+  private String isTextMissing() {
     try {
       if (message.getText().isEmpty()) {
         return "message.text";
@@ -81,13 +82,24 @@ public class Receive {
 
   }
 
-  public String isTimeStampMissing() {
+  private String isTimeStampMissing() {
     try {
       if (message.getTimestamp() == null) {
         return "message.timestamp";
       }
     } catch (NullPointerException ex) {
       return "message.timestamp";
+    }
+    return "";
+  }
+
+  private String isClientIdMissing() {
+    try {
+      if(client.getId() == null) {
+        return "client.id";
+      }
+    }catch (NullPointerException ex) {
+      return "client.id";
     }
     return "";
   }
