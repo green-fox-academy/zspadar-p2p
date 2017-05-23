@@ -24,12 +24,12 @@ public class Message {
 
 
 
-  public Message(long id, String userName, String text, Timestamp timestamp) {
-    this.id = id;
-    this.userName = userName;
-    this.text = text;
-    this.timestamp = timestamp;
-  }
+//  public Message(long id, String userName, String text, Timestamp timestamp) {
+//    this.id = id;
+//    this.userName = userName;
+//    this.text = text;
+//    this.timestamp = timestamp;
+//  }
 
   public Message(String userName, String text) {
     this.id = (1000000 + (long)(Math.random() * 9999999));
