@@ -1,4 +1,4 @@
-package com.greenfox.model;
+package com.greenfox.model.classes;
 
 
 import javax.persistence.Entity;

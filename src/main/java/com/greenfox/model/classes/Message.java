@@ -1,4 +1,4 @@
-package com.greenfox.model;
+package com.greenfox.model.classes;
 
 import com.greenfox.repository.MessageRepository;
 import java.sql.Timestamp;
@@ -22,14 +22,10 @@ public class Message {
   String userName;
   Timestamp timestamp;
 
-
-
-//  public Message(long id, String userName, String text, Timestamp timestamp) {
-//    this.id = id;
-//    this.userName = userName;
-//    this.text = text;
-//    this.timestamp = timestamp;
-//  }
+  public Message() {
+    this.id = (1000000 + (long)(Math.random() * 9999999));
+    this.timestamp = new Timestamp(System.currentTimeMillis());
+  }
 
   public Message(String userName, String text) {
     this.id = (1000000 + (long)(Math.random() * 9999999));
@@ -38,7 +34,12 @@ public class Message {
     this.timestamp = new Timestamp(System.currentTimeMillis());
   }
 
-
+  public Message(long id, String text, String userName, Timestamp timestamp) {
+    this.id = id;
+    this.text = text;
+    this.userName = userName;
+    this.timestamp = timestamp;
+  }
 
   public long getId() {
     return id;

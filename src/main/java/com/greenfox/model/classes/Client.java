@@ -1,6 +1,5 @@
-package com.greenfox.model;
+package com.greenfox.model.classes;
 
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Created by zsuzsanna.padar on 2017. 05. 22..
@@ -8,8 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class Client {
   String id;
 
+  public Client() {
+  }
+
   public Client(String id) {
     this.id = id;
   }
 
+  public String getId() {
+    return id;
+  }
 }

@@ -1,4 +1,6 @@
-package com.greenfox.model;
+package com.greenfox.model.classes;
+
+import com.greenfox.model.interfaces.Status;
 
 /**
  * Created by zsuzsanna.padar on 2017. 05. 22..

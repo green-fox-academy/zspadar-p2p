@@ -1,6 +1,6 @@
 package com.greenfox.repository;
 
-import com.greenfox.model.Message;
+import com.greenfox.model.classes.Message;
 import org.springframework.data.repository.CrudRepository;
 
 /**
