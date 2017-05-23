@@ -7,7 +7,6 @@ import com.greenfox.model.classes.StatusError;
 import com.greenfox.model.classes.StatusOk;
 import com.greenfox.repository.MessageRepository;
 import java.util.Arrays;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,7 +30,7 @@ public class MessageController {
       } else {
         // save to db
         messageRepository.save(new Message(receive.getMessage().getId(),
-                                           receive.getMessage().getUserName(),
+                                           receive.getMessage().getUsername(),
                                            receive.getMessage().getText(),
                                            receive.getMessage().getTimestamp()));
         // return

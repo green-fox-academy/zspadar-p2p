@@ -49,7 +49,7 @@ public class Receive {
 
   public String isUserNameMissing() {
     try {
-      if (message.getUserName().isEmpty() || message.getUserName() == null) {
+      if (message.getUsername().isEmpty() || message.getUsername() == null) {
         return "message.username";
       }
     } catch (NullPointerException ex) {

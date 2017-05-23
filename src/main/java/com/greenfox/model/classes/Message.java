@@ -1,11 +1,9 @@
 package com.greenfox.model.classes;
 
-import com.greenfox.repository.MessageRepository;
 import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import org.springframework.beans.factory.annotation.Autowired;
 
 
 /**
@@ -19,7 +17,7 @@ public class Message {
   long id;
 
   String text;
-  String userName;
+  String username;
   Timestamp timestamp;
 
   public Message() {
@@ -27,17 +25,17 @@ public class Message {
     this.timestamp = new Timestamp(System.currentTimeMillis());
   }
 
-  public Message(String userName, String text) {
+  public Message(String username, String text) {
     this.id = (1000000 + (long)(Math.random() * 9999999));
     this.text = text;
-    this.userName = userName;
+    this.username = username;
     this.timestamp = new Timestamp(System.currentTimeMillis());
   }
 
-  public Message(long id, String text, String userName, Timestamp timestamp) {
+  public Message(long id, String text, String username, Timestamp timestamp) {
     this.id = id;
     this.text = text;
-    this.userName = userName;
+    this.username = username;
     this.timestamp = timestamp;
   }
 
@@ -49,8 +47,8 @@ public class Message {
     return text;
   }
 
-  public String getUserName() {
-    return userName;
+  public String getUsername() {
+    return username;
   }
 
   public Timestamp getTimestamp() {
