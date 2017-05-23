@@ -12,6 +12,14 @@ public class Receive {
   private Message message;
   private Client client;
 
+  public Receive() {
+  }
+
+  public Receive(Message message, Client client) {
+    this.message = message;
+    this.client = client;
+  }
+
   public String getMissingFields() {
     String missingField = "";
     List<String> missingFields = new ArrayList<>();

@@ -53,7 +53,7 @@ public class MessageControllerTest {
   }
 
   @Test
-  public void testReceivedJson() throws Exception {
+  public void testReceivedJsonIsOk() throws Exception {
     mockMvc.perform(post("/api/message/receive")
     .contentType(MediaType.APPLICATION_JSON)
     .content("{\n"
@@ -71,6 +71,27 @@ public class MessageControllerTest {
     .andExpect(content().contentType(contentType))
     .andExpect(jsonPath("$.status").value("ok"));
   }
+
+//  @Test
+//  public void testReceivedJsonIsNotOk() throws Exception {
+//    mockMvc.perform(post("/api/message/receive")
+//        .contentType(MediaType.APPLICATION_JSON)
+//        .content("{\n"
+//            + "  \"message\": {\n"
+//            + "    \"id\": 7655482,\n"
+//            + "    \"text\": \"How you doin'?\",\n"
+//            + "    \"timestamp\": 1322018752992\n"
+//            + "  },\n"
+//            + "  \"client\": {\n"
+//            + "    \"id\": \"EggDice\"\n"
+//            + "  }\n"
+//            + "}"))
+//        .andExpect(status().isOk())
+//        .andExpect(content().contentType(contentType))
+//        .andExpect(jsonPath("$.status").value("error"))
+//        .andExpect(jsonPath("$.message").value("Missing field(s): message.username"));
+//  }
+//
 
 
 }
