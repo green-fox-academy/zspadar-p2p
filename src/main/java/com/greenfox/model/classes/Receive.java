@@ -18,14 +18,17 @@ public class Receive {
     missingFields.add(isUserNameMissing());
     missingFields.add(isTextMissing());
     missingFields.add(isTimeStampMissing());
-    for(int i = 0; i <missingFields.size(); i++ ){
-      missingField += String.valueOf(i);
+//    for(int i = 0; i <missingFields.size(); i++ ){
+//      missingField += String.valueOf(i);
+    for(String temp: missingFields){
+      missingField +=temp;
     }
     return missingField;
   }
 
   public Boolean hasMissingFields() {
-    return getMissingFields().length() > 0;
+    System.out.println(getMissingFields().length());
+    return getMissingFields().trim().length() != 0;
   }
 
   public Message getMessage() {
@@ -45,11 +48,14 @@ public class Receive {
   }
 
   public String isUserNameMissing() {
-    if(message.getUserName().isEmpty()) {
+    try {
+      if (message.getUserName().isEmpty() || message.getUserName() == null) {
+        return "message.username";
+      }
+    } catch (NullPointerException ex) {
       return "message.username";
-    } else {
-      return "";
     }
+    return "";
   }
 
   public String isTextMissing() {
