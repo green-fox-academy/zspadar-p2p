@@ -1,10 +1,9 @@
 package com.greenfox.model.classes;
 
 import com.greenfox.model.interfaces.Status;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import javafx.print.Collation;
+
 
 /**
  * Created by zsuzsanna.padar on 2017. 05. 22..
@@ -26,4 +25,5 @@ public class StatusError implements Status {
   public String getMessage() {
     return message;
   }
+
 }
