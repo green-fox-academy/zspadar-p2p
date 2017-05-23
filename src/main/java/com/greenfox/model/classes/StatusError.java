@@ -12,7 +12,7 @@ public class StatusError implements Status {
 
   public StatusError(List<String> fields) {
     this.status = "error";
-    this.message = String.format("Missing field(s): %s", String.join(", ", fields));
+    this.message = String.format("Missing field(s): %s ", String.join(", ", fields));
   }
 
   public String getStatus() {

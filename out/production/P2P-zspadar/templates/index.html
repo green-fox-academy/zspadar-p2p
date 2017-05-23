@@ -10,7 +10,7 @@
 <p th:text="${error}"></p>
   <form action="/update" method="get">
     <label>Your username</label>
-    <input th:type="text" th:name="userName" th:value="${currentUser}"/>
+    <input th:type="text" th:name="username" th:value="${currentUser}"/>
     <button th:type="submit">Update</button>
   </form>
   <ul th:each="messageTemp : ${text}" >

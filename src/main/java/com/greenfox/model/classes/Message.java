@@ -21,8 +21,7 @@ public class Message {
   Timestamp timestamp;
 
   public Message() {
-    this.id = (1000000 + (long)(Math.random() * 9999999));
-    this.timestamp = new Timestamp(System.currentTimeMillis());
+
   }
 
   public Message(String username, String text) {

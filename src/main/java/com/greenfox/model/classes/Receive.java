@@ -1,5 +1,7 @@
 package com.greenfox.model.classes;
 
+import com.sun.jdi.LongValue;
+import com.sun.xml.internal.ws.util.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +20,6 @@ public class Receive {
     missingFields.add(isUserNameMissing());
     missingFields.add(isTextMissing());
     missingFields.add(isTimeStampMissing());
-//    for(int i = 0; i <missingFields.size(); i++ ){
-//      missingField += String.valueOf(i);
     for(String temp: missingFields){
       missingField +=temp;
     }
@@ -40,16 +40,19 @@ public class Receive {
   }
 
   public String  isMessageIdMissing() {
-   if(String.valueOf(message.getId()).isEmpty()) {
-     return "message.id";
-   } else {
+   try {
+    if(String.valueOf(message.getId()).isEmpty()) {
+      return "message.id";
+    }
+   } catch (NullPointerException ex) {
+      return "message.id";
+     }
      return "";
-   }
   }
 
   public String isUserNameMissing() {
     try {
-      if (message.getUsername().isEmpty() || message.getUsername() == null) {
+      if (message.getUsername().isEmpty()) {
         return "message.username";
       }
     } catch (NullPointerException ex) {
@@ -59,19 +62,26 @@ public class Receive {
   }
 
   public String isTextMissing() {
-    if(message.getText().isEmpty()) {
+    try {
+      if (message.getText().isEmpty()) {
+        return "message.text";
+      }
+    }catch (NullPointerException ex){
       return "message.text";
-    } else {
-      return "";
     }
+      return "";
+
   }
 
   public String isTimeStampMissing() {
-    if(String.valueOf(message.getTimestamp()).isEmpty()){
+    try {
+      if (message.getTimestamp() == null) {
+        return "message.timestamp";
+      }
+    } catch (NullPointerException ex) {
       return "message.timestamp";
-    } else {
-      return "";
     }
+    return "";
   }
 
 }
