@@ -6,6 +6,8 @@ import com.greenfox.model.interfaces.Status;
 import com.greenfox.model.classes.StatusError;
 import com.greenfox.model.classes.StatusOk;
 import com.greenfox.repository.MessageRepository;
+import java.util.Arrays;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,8 +26,7 @@ public class MessageController {
   @PostMapping(value = "/api/message/receive")
   public Status receiveMessage(@RequestBody Receive receive) {
       if (receive.hasMissingFields()) {
-        String[] missingFields = receive.getMissingFields();
-        Status error = new StatusError(missingFields);
+        Status error = new StatusError(Arrays.asList(receive.getMissingFields()));
         return error;
       } else {
         // save to db
