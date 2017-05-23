@@ -110,7 +110,9 @@ public class P2PController {
     client.setId(System.getenv("CHAT_APP_UNIQUE_ID"));
 //    Message message1 = new Message(userRepository.findOne((long) 1).getUsername(), message);
     Receive receive = new Receive(message1, client);
-    restTemplate.postForObject(URI, receive, StatusOk.class);
+    if(!(receive.getClient().getId().equals(System.getenv("CHAT_APP_UNIQUE_ID")))) {
+      restTemplate.postForObject(URI, receive, StatusOk.class);
+    }
     return "redirect:/";
 
   }
