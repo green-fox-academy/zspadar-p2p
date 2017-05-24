@@ -109,7 +109,7 @@ public class P2PController {
     Client client = new Client();
     client.setId(System.getenv("CHAT_APP_UNIQUE_ID"));
 //    Message message1 = new Message(userRepository.findOne((long) 1).getUsername(), message);
-    Receive receive = new Receive(message1, client);
+    Receive receive = new Receive(client, message1);
     if(!(receive.getClient().getId().equals(System.getenv("CHAT_APP_UNIQUE_ID")))) {
       restTemplate.postForObject(URI, receive, StatusOk.class);
     }
