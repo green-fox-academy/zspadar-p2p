@@ -50,7 +50,7 @@ public class Receive {
    try {
     if(String.valueOf(message.getId()).isEmpty()) {
       return "message.id";
-    }
+      }
    } catch (NullPointerException ex) {
       return "message.id";
      }
@@ -73,11 +73,10 @@ public class Receive {
       if (message.getText().isEmpty()) {
         return "message.text";
       }
-    }catch (NullPointerException ex){
+    } catch (NullPointerException ex) {
       return "message.text";
     }
       return "";
-
   }
 
   private String isTimeStampMissing() {

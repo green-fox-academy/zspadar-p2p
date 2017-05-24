@@ -29,24 +29,21 @@ public class MessageController {
 
   @PostMapping(value = "/api/message/receive")
   public Status receiveMessage(@RequestBody Receive receive) {
-      if (receive.hasMissingFields()) {
-        Status error = new StatusError(Arrays.asList(receive.getMissingFields()));
-        return error;
-      } else {
-        // save to db
-        messageRepository.save(new Message(receive.getMessage().getId(),
-                                           receive.getMessage().getUsername(),
-                                           receive.getMessage().getText(),
-                                           receive.getMessage().getTimestamp()));
-        if(!(receive.getClient().getId().equals(System.getenv("CHAT_APP_UNIQUE_ID")))) {
-          restTemplate.postForObject(URI, receive, StatusOk.class);
-        }
-
-
-
-        // return
-        return new StatusOk();
+    if (receive.hasMissingFields()) {
+      Status error = new StatusError(Arrays.asList(receive.getMissingFields()));
+      return error;
+    } else {
+      // save to db
+      messageRepository.save(new Message(receive.getMessage().getId(),
+          receive.getMessage().getUsername(),
+          receive.getMessage().getText(),
+          receive.getMessage().getTimestamp()));
+      if (!(receive.getClient().getId().equals(System.getenv("CHAT_APP_UNIQUE_ID")))) {
+        restTemplate.postForObject(URI, receive, StatusOk.class);
       }
+      // return
+      return new StatusOk();
+    }
   }
 
 }
