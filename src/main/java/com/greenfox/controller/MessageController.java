@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * Created by zsuzsanna.padar on 2017. 05. 22..
@@ -21,6 +22,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class MessageController {
   @Autowired
   private MessageRepository messageRepository;
+
+  RestTemplate restTemplate = new RestTemplate();
+
+  public static final String URI = System.getenv("CHAT_APP_PEER_ADDRESS") + "/api/message/receive";
 
   @PostMapping(value = "/api/message/receive")
   public Status receiveMessage(@RequestBody Receive receive) {
@@ -33,6 +38,12 @@ public class MessageController {
                                            receive.getMessage().getUsername(),
                                            receive.getMessage().getText(),
                                            receive.getMessage().getTimestamp()));
+        if(!(receive.getClient().getId().equals(System.getenv("CHAT_APP_UNIQUE_ID")))) {
+          restTemplate.postForObject(URI, receive, StatusOk.class);
+        }
+
+
+
         // return
         return new StatusOk();
       }
