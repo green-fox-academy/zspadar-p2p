@@ -15,8 +15,8 @@
     <button th:type="submit">Update</button>
   </form>
   <ul th:each="messageTemp : ${text}" >
-    <li th:text="${messageTemp.username}" ></li>
-    <li class="text" th:text="${messageTemp.text}"></li>
+    <li th:text="${messageTemp.text}" ></li>
+    <li class="text" th:text="${messageTemp.username}"></li>
   </ul>
 <form th:class="send" th:action="@{/send}" th:method="post">
   <textarea th:type="text" th:name="text" style="width: 200px; height: 50px;"></textarea>
