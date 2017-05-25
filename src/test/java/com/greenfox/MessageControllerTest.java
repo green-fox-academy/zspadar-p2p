@@ -56,12 +56,12 @@ public class MessageControllerTest {
     .content("{\n"
         + "  \"message\": {\n"
         + "    \"id\": 7655482,\n"
-        + "    \"username\": \"EggDice\",\n"
+        + "    \"username\": \"EggDice2\",\n"
         + "    \"text\": \"How you doin'?\",\n"
         + "    \"timestamp\": 1322018752992\n"
         + "  },\n"
         + "  \"client\": {\n"
-        + "    \"id\": \"EggDice\"\n"
+        + "    \"id\": \"dombo3\"\n"
         + "  }\n"
         + "}"))
     .andExpect(status().isOk())
