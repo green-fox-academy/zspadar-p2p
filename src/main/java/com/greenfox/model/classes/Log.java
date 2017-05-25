@@ -3,13 +3,12 @@ package com.greenfox.model.classes;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-
 /**
  * Created by zsuzsanna.padar on 2017. 05. 17..
  */
 public class Log {
 
-  public static final String LOG_LEVEL = System.getenv("CHAT_APP_LOGLEVEL"); // ERROR or INFO
+  private static final String LOG_LEVEL = System.getenv("CHAT_APP_LOGLEVEL"); // ERROR or INFO
 
   private String path;
   private String method;
@@ -81,4 +80,5 @@ public class Log {
     //2017-05-16 21:47:19.040 INFO Request /text POST text=apple
     return dateAndTime + " " + logLevel + " " + path + " " + method + " " + requestData;
   }
+
 }

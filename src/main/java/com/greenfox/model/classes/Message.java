@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 /**
  * Created by zsuzsanna.padar on 2017. 05. 18..
  */
@@ -16,9 +15,9 @@ public class Message {
   @Id
   long id;
 
-  String text;
-  String username;
-  Timestamp timestamp;
+  private String text;
+  private String username;
+  private Timestamp timestamp;
 
   public Message() {
 
@@ -53,4 +52,5 @@ public class Message {
   public Timestamp getTimestamp() {
     return timestamp;
   }
+
 }

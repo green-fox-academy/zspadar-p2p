@@ -1,6 +1,5 @@
 package com.greenfox.model.classes;
 
-
 /**
  * Created by zsuzsanna.padar on 2017. 05. 22..
  */
@@ -21,4 +20,5 @@ public class Client {
   public void setId(String id) {
     this.id = id;
   }
+
 }

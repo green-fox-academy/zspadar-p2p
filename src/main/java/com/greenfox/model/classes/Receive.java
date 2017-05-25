@@ -21,7 +21,7 @@ public class Receive {
   public String getMissingFields() {
     String missingField = "";
     List<String> missingFields = new ArrayList<>();
-    // TODO check fields
+    // check fields
     missingFields.add(isMessageIdMissing());
     missingFields.add(isUserNameMissing());
     missingFields.add(isTextMissing());
@@ -48,9 +48,9 @@ public class Receive {
 
   private String  isMessageIdMissing() {
    try {
-    if(String.valueOf(message.getId()).isEmpty()) {
-      return "message.id";
-      }
+     if(String.valueOf(message.getId()).isEmpty()) {
+       return "message.id";
+     }
    } catch (NullPointerException ex) {
       return "message.id";
      }
