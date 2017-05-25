@@ -7,8 +7,8 @@ import java.util.List;
  * Created by zsuzsanna.padar on 2017. 05. 22..
  */
 public class Receive {
-  private Message message;
   private Client client;
+  private Message message;
 
   public Receive() {
   }
