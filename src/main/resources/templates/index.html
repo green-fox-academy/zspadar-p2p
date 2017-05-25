@@ -18,13 +18,13 @@
   </form>
   <ul th:each="messageTemp : ${text}" >
     <li th:text="${messageTemp.username}" ></li>
-    <li class="text" th:text="${messageTemp.text}"></li>
+    <li  class="bg-primary"  th:text="${messageTemp.text}"></li>
   </ul>
 <form th:class="send" th:action="@{/send}" th:method="post">
   <textarea class="form-control" th:type="text" th:name="text" style="width: 200px; height: 50px;"></textarea>
   <p>
     <button class="btn btn-primary" th:type="submit">Send</button>
-    <a class="btn btn-primary" href="/" role="button">Refresh</a>
+    <a class="btn btn-default" href="/" role="button">Refresh</a>
   </p>
 </form>
 <li><a href="/" >Refresh</a></li>
