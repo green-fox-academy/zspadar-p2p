@@ -31,7 +31,7 @@ public class Message {
     this.timestamp = new Timestamp(System.currentTimeMillis());
   }
 
-  public Message(long id, String text, String username, Timestamp timestamp) {
+  public Message(long id, String username, String text, Timestamp timestamp) {
     this.id = id;
     this.text = text;
     this.username = username;
