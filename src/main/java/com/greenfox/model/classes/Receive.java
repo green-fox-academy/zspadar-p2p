@@ -14,8 +14,8 @@ public class Receive {
   }
 
   public Receive(Client client, Message message) {
-    this.message = message;
     this.client = client;
+    this.message = message;
   }
 
   public String getMissingFields() {

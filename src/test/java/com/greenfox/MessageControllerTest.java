@@ -61,7 +61,7 @@ public class MessageControllerTest {
         + "    \"timestamp\": 1322018752992\n"
         + "  },\n"
         + "  \"client\": {\n"
-        + "    \"id\": \"dombo3\"\n"
+        + "    \"id\": \"vvarro\"\n"
         + "  }\n"
         + "}"))
     .andExpect(status().isOk())
