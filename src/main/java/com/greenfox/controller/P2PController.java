@@ -38,7 +38,7 @@ public class P2PController {
 
   @GetMapping(value = "/")
   public String showIndex(HttpServletRequest request, Model model) {
-    Log logger = new Log(request.getMethod(), request.getRequestURI(), request.getParameter("/"), "INFO");
+    Log logger = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""), "INFO");
     logger.log();
     if(userRepository.count() == 0) {
       return "redirect:/enter";
@@ -53,7 +53,7 @@ public class P2PController {
 
   @GetMapping(value = "/enter")
   public String enterUserName(HttpServletRequest request, Model model) {
-    Log logger = new Log(request.getMethod(), request.getRequestURI(), request.getParameter("/enter"), "INFO");
+    Log logger = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""), "INFO");
     logger.log();
     model.addAttribute("error", error);
     return "enter";
@@ -64,14 +64,14 @@ public class P2PController {
     if (name.equals("")) {
       error = "The username field is empty";
       model.addAttribute("error", error);
-      Log logger = new Log(request.getMethod(), request.getRequestURI(), request.getParameter("/enter/add"), "ERROR");
+      Log logger = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""), "ERROR");
       logger.log();
       return "redirect:/enter";
     } else {
       userRepository.save(new User(name));
       error = "";
       model.addAttribute("error", error);
-      Log logger = new Log(request.getMethod(), request.getRequestURI(), request.getParameter("/enter/add"), "INFO");
+      Log logger = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""), "INFO");
       logger.log();
       return "redirect:/";
     }
@@ -81,13 +81,13 @@ public class P2PController {
   public String upDate(HttpServletRequest request, @RequestParam("username") String userName) {
     if (userName.equals("")) {
       error = "The username field is empty";
-      Log logger = new Log(request.getMethod(), request.getRequestURI(), request.getParameter("/update"), "ERROR");
+      Log logger = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""), "ERROR");
       logger.log();
       return "redirect:/";
     } else {
       User user = userRepository.findOne((long) 1);
       upDatedUser(user, userName);
-      Log logger = new Log(request.getMethod(), request.getRequestURI(), request.getParameter("/update"), "INFO");
+      Log logger = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""), "INFO");
       logger.log();
       return "redirect:/";
     }

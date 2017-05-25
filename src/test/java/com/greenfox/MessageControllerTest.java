@@ -86,7 +86,7 @@ public class MessageControllerTest {
         .andExpect(status().isOk())
         .andExpect(content().contentType(contentType))
         .andExpect(jsonPath("$.status").value("error"))
-        .andExpect(jsonPath("$.message").value("Missing field(s): message.username"));
+        .andExpect(jsonPath("$.message").value("Missing field(s): [[message.username]]"));
   }
 
 

@@ -32,12 +32,12 @@ public class MessageController {
   @PostMapping(value = "/api/message/receive")
   public Status receiveMessage(HttpServletRequest request, @RequestBody Receive receive) {
     if (receive.hasMissingFields()) {
-      Log logger = new Log(request.getMethod(), request.getRequestURI(), request.getParameter("/api/message/receive"), "ERROR");
+      Log logger = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""), "ERROR");
       logger.log();
       Status error = new StatusError(Arrays.asList(receive.getMissingFields()));
       return error;
     } else {
-      Log logger = new Log(request.getMethod(), request.getRequestURI(), request.getParameter("/api/message/receive"), "INFO");
+      Log logger = new Log(request.getMethod(), request.getRequestURI(), request.getParameter(""), "INFO");
       logger.log();
       // save to db
       messageRepository.save(new Message(receive.getMessage().getId(),
