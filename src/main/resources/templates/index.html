@@ -8,9 +8,14 @@
   <meta http-equiv="Refresh" content="15" />
 </head>
 <body>
-<h1>Peer to peer chat program:</h1>
-<p>This is testing the auto deploy </p>
-<p th:text="${error}"></p>
+<div class="container-fluid">
+  <div class="panel-default">
+    <div class="panel-heading">
+      <h1>Peer to peer chat program:</h1>
+    </div>
+  <p>This is testing the auto deploy </p>
+  <p th:text="${error}"></p>
+  </div>
   <form action="/update" method="get">
     <label>Your username</label>
     <input th:type="text" th:name="username" th:value="${currentUser}"/>
@@ -20,15 +25,19 @@
     <li th:text="${messageTemp.username}" ></li>
     <li  class="bg-primary"  th:text="${messageTemp.text}"></li>
   </ul>
-<form th:class="send" th:action="@{/send}" th:method="post">
-  <textarea class="form-control" th:type="text" th:name="text" style="width: 200px; height: 50px;"></textarea>
-  <p>
-    <button class="btn btn-primary" th:type="submit">Send</button>
-    <a class="btn btn-default" href="/" role="button">Refresh</a>
-  </p>
-</form>
-<li><a href="/" >Refresh</a></li>
-<script src="webjars/jquery/1.11.1/jquery.min.js"></script>
-<script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+  <form th:class="send" th:action="@{/send}" th:method="post">
+    <textarea class="form-control" th:type="text" th:name="text" style="width: 200px; height: 50px;"></textarea>
+    <p>
+      <button class="btn btn-primary" th:type="submit">Send</button>
+      <a class="btn btn-default" href="/" role="button">Refresh</a>
+    </p>
+  </form>
+  <li><a href="/" >Refresh</a></li>
+  <script src="webjars/jquery/1.11.1/jquery.min.js"></script>
+  <script src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+
+</div>
 </body>
+
+
 </html>
