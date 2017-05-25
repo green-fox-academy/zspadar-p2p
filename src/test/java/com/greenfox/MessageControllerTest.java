@@ -39,11 +39,6 @@ public class MessageControllerTest {
 
   private MockMvc mockMvc;
 
-  @Autowired
-  UserRepository userRepository;
-
-  @Autowired
-  MessageRepository messageRepository;
 
   @Autowired
   WebApplicationContext webApplicationContext;
