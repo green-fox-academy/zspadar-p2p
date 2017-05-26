@@ -1,18 +1,23 @@
 package com.greenfox.controller;
 
+import com.greenfox.model.classes.Client;
 import com.greenfox.model.classes.Log;
 import com.greenfox.model.classes.Message;
+import com.greenfox.model.classes.Messages;
 import com.greenfox.model.classes.Receive;
 import com.greenfox.model.interfaces.Status;
 import com.greenfox.model.classes.StatusError;
 import com.greenfox.model.classes.StatusOk;
 import com.greenfox.repository.MessageRepository;
 import java.util.Arrays;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -51,5 +56,13 @@ public class MessageController {
       return new StatusOk();
     }
   }
+
+  @GetMapping(value = "/api/messages")
+  public Messages getMessage(@RequestParam(value = "message") List<Message> messages,
+      @RequestParam(value = "client") Client client) {
+    Messages messageListWithClients = new Messages(messages, client);
+    return messageListWithClients;
+  }
+
 
 }
